@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { ContextApp } from './App';
-import { ActionType } from './types/stateType';
+import { ContextApp } from '../App';
+import { ActionType } from '../types/stateType';
 
 function NewTask() {
   const { dispatch } = useContext(ContextApp);
@@ -21,16 +21,14 @@ function NewTask() {
   }
 
   return (
-    <>
-      <form onSubmit={addTask}>
-        <input
-          type="text"
-          onChange={(event) => changeTaskName(event.target.value)}
-          value={taskName}
-        />
-        <button type="submit">Add a task</button>
-      </form>
-    </>
+    <form onSubmit={addTask}>
+      <input
+        type="text"
+        onChange={(event) => changeTaskName(event.target.value)}
+        value={taskName}
+      />
+      <button type="submit">Add a task</button>
+    </form>
   );
 }
 

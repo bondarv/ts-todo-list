@@ -5,7 +5,6 @@ export interface State {
   tasks: Tasks;
 }
 
-// Все возможные варианты действий со стейтом
 export enum ActionType {
   ADD = 'ADD',
   REMOVE = 'REMOVE',
@@ -17,8 +16,9 @@ export interface Action {
   payload: Task;
 }
 
-// Наш контекст состоит из стейта и функции-редьюсера, в которую будут передаваться Action. Тип Dispatch импортируется из библиотеки react
+export type DispatchAction = Dispatch<Action>;
+
 export interface ContextState {
   state: State;
-  dispatch: Dispatch<Action>;
+  dispatch: DispatchAction;
 }
