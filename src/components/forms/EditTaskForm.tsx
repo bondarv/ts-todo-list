@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useUpdateTaskAction } from '../actions/taskActions';
-import { Task } from '../types/taskType';
+import { useUpdateTaskAction } from '../../actions/taskActions';
+import { Task } from '../../types/taskType';
 
 interface EditTaskFormProps {
   task: Task;

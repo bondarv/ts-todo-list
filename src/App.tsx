@@ -1,9 +1,8 @@
 import React, { createContext, useReducer, useState } from 'react';
 import { Action, State, ContextState } from './types/stateType';
 import todoReducer from './reducers/todoReducer';
-import NewTaskForm from './forms/NewTaskForm';
-import EditTaskForm from './forms/EditTaskForm';
-import TasksList from './components/TaskList/TasksList';
+import TaskForm from './components/forms/TaskForm';
+import TasksList from './components/TasksList/TasksList';
 import './App.css';
 
 const initialState: State = {
@@ -31,11 +30,7 @@ function App() {
 
   return (
     <ContextApp.Provider value={ContextState}>
-      {editing ? (
-        <EditTaskForm task={currentTask} setEditing={setEditing} />
-      ) : (
-        <NewTaskForm />
-      )}
+      <TaskForm editing={editing} task={currentTask} setEditing={setEditing} />
       <TasksList setEditing={setEditing} setCurrentTask={setCurrentTask} />
     </ContextApp.Provider>
   );
