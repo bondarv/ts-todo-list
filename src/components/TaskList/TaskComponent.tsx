@@ -1,31 +1,27 @@
 import React from 'react';
-import { ActionType, DispatchAction } from '../../types/stateType';
 import { Task } from '../../types/taskType';
 
 interface TaskComponentProps {
   task: Task;
-  dispatch: DispatchAction;
+  removeTask: (task: Task) => void;
+  toggleTask: (task: Task) => void;
 }
 
-const TaskComponent: React.FC<TaskComponentProps> = ({ task, dispatch }) => (
+const TaskComponent: React.FC<TaskComponentProps> = ({
+  task,
+  toggleTask,
+  removeTask,
+}) => (
   <li className={task.isDone ? 'ready' : undefined}>
     <label>
       <input
         type="checkbox"
-        onChange={() => dispatch({ type: ActionType.TOGGLE, payload: task })}
+        onChange={() => toggleTask(task)}
         checked={task.isDone}
       />
     </label>
     <div>{task.name}</div>
-    <button
-      className="remove-button"
-      onClick={() =>
-        dispatch({
-          type: ActionType.REMOVE,
-          payload: task,
-        })
-      }
-    >
+    <button className="remove-button" onClick={() => removeTask(task)}>
       X
     </button>
   </li>

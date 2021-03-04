@@ -1,20 +1,16 @@
-import React, { useContext, useState } from 'react';
-import { ContextApp } from '../App';
-import { ActionType } from '../types/stateType';
+import React, { useState } from 'react';
+import { useAddTaskAction } from '../actions/taskActions';
 
 function NewTask() {
-  const { dispatch } = useContext(ContextApp);
   const [taskName, changeTaskName] = useState('');
+  const addTaskAction = useAddTaskAction();
 
   function addTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (taskName) {
-      dispatch({
-        type: ActionType.ADD,
-        payload: {
-          name: taskName,
-          isDone: false,
-        },
+      addTaskAction({
+        name: taskName,
+        isDone: false,
       });
       changeTaskName('');
     }

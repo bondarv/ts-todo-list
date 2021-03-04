@@ -16,9 +16,7 @@ export interface Action {
   payload: Task;
 }
 
-export type DispatchAction = Dispatch<Action>;
-
 export interface ContextState {
   state: State;
-  dispatch: DispatchAction;
+  dispatch: Dispatch<Action>;
 }
