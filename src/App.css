@@ -20,6 +20,12 @@ ul > li.ready {
   background: #d2e689;
 }
 
+.edit-button {
+  position: absolute;
+  top: 5px;
+  right: 60px;
+}
+
 .remove-button {
   position: absolute;
   top: 5px;

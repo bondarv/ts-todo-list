@@ -44,3 +44,17 @@ export function useToggleTaskAction() {
     [dispatch]
   );
 }
+
+export function useUpdateTaskAction() {
+  const { dispatch } = useContext(ContextApp);
+
+  return useCallback(
+    (task) => {
+      const updateTaskAction = (payload: Task) =>
+        dispatch({ type: ActionType.UPDATE, payload });
+
+      updateTaskAction(task);
+    },
+    [dispatch]
+  );
+}

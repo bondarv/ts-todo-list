@@ -8,14 +8,14 @@ describe('<TasksList />', () => {
 
   const testState: State = {
     tasks: [
-      { name: 'test', isDone: false },
-      { name: 'test2', isDone: false },
+      { id: '1', name: 'test', isDone: false },
+      { id: '2', name: 'test2', isDone: false },
     ],
   };
 
   const Wrapper = () => (
     <ContextApp.Provider value={{ state: testState, dispatch: () => null }}>
-      <TasksList />
+      <TasksList setEditing={() => null} setCurrentTask={() => null} />
     </ContextApp.Provider>
   );
 

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useAddTaskAction } from '../actions/taskActions';
+import { v4 as uuidv4 } from 'uuid';
 
-function NewTask() {
+function NewTaskForm() {
   const [taskName, changeTaskName] = useState('');
   const addTaskAction = useAddTaskAction();
 
@@ -9,11 +10,17 @@ function NewTask() {
     event.preventDefault();
     if (taskName) {
       addTaskAction({
+        id: uuidv4(),
         name: taskName,
         isDone: false,
       });
       changeTaskName('');
     }
+  }
+
+  function handleCancel(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    changeTaskName('');
   }
 
   return (
@@ -24,8 +31,9 @@ function NewTask() {
         value={taskName}
       />
       <button type="submit">Add a task</button>
+      <button onClick={handleCancel}>Cancel</button>
     </form>
   );
 }
 
-export default NewTask;
+export default NewTaskForm;

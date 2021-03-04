@@ -3,7 +3,7 @@ import { ActionType, Action, State } from '../types/stateType';
 import { Task } from '../types/taskType';
 
 describe('todoReducer', () => {
-  const task: Task = { name: 'new task', isDone: false };
+  const task: Task = { id: '1', name: 'new task', isDone: false };
 
   it('returns new state for "ADD" type', () => {
     const initialState: State = { tasks: [] };
@@ -29,7 +29,18 @@ describe('todoReducer', () => {
     const updateAction: Action = { type: ActionType.TOGGLE, payload: task };
     const updatedState = todoReducer(initialState, updateAction);
     expect(updatedState).toEqual({
-      tasks: [{ name: 'new task', isDone: true }],
+      tasks: [{ id: '1', name: 'new task', isDone: true }],
     });
+  });
+
+  it('returns new state for "UPDATE" type', () => {
+    const initialState: State = { tasks: [task] };
+    const newTask = { ...task, name: 'different' };
+    const updateAction: Action = {
+      type: ActionType.UPDATE,
+      payload: newTask,
+    };
+    const updatedState = todoReducer(initialState, updateAction);
+    expect(updatedState).toEqual({ tasks: [newTask] });
   });
 });

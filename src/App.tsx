@@ -1,7 +1,8 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useState } from 'react';
 import { Action, State, ContextState } from './types/stateType';
 import todoReducer from './reducers/todoReducer';
-import NewTask from './components/NewTask';
+import NewTaskForm from './forms/NewTaskForm';
+import EditTaskForm from './forms/EditTaskForm';
 import TasksList from './components/TaskList/TasksList';
 import './App.css';
 
@@ -25,10 +26,17 @@ function App() {
     dispatch,
   };
 
+  const [editing, setEditing] = useState(false);
+  const [currentTask, setCurrentTask] = useState(state.tasks[0]);
+
   return (
     <ContextApp.Provider value={ContextState}>
-      <NewTask />
-      <TasksList />
+      {editing ? (
+        <EditTaskForm task={currentTask} setEditing={setEditing} />
+      ) : (
+        <NewTaskForm />
+      )}
+      <TasksList setEditing={setEditing} setCurrentTask={setCurrentTask} />
     </ContextApp.Provider>
   );
 }

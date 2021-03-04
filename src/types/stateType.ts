@@ -9,6 +9,7 @@ export enum ActionType {
   ADD = 'ADD',
   REMOVE = 'REMOVE',
   TOGGLE = 'TOGGLE',
+  UPDATE = 'UPDATE',
 }
 
 export interface Action {

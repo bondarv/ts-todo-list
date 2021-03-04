@@ -3,13 +3,15 @@ import { Task } from '../../types/taskType';
 
 interface TaskComponentProps {
   task: Task;
-  removeTask: (task: Task) => void;
   toggleTask: (task: Task) => void;
+  editTask: (task: Task) => void;
+  removeTask: (task: Task) => void;
 }
 
 const TaskComponent: React.FC<TaskComponentProps> = ({
   task,
   toggleTask,
+  editTask,
   removeTask,
 }) => (
   <li className={task.isDone ? 'ready' : undefined}>
@@ -21,8 +23,11 @@ const TaskComponent: React.FC<TaskComponentProps> = ({
       />
     </label>
     <div>{task.name}</div>
+    <button className="edit-button" onClick={() => editTask(task)}>
+      Edit
+    </button>
     <button className="remove-button" onClick={() => removeTask(task)}>
-      X
+      Delete
     </button>
   </li>
 );
