@@ -1,5 +1,4 @@
 import { cleanup, render } from '@testing-library/react';
-import { ContextApp } from '../../App';
 import TasksList from './TasksList';
 import { State } from '../../types/stateType';
 
@@ -14,9 +13,11 @@ describe('<TasksList />', () => {
   };
 
   const Wrapper = () => (
-    <ContextApp.Provider value={{ state: testState, dispatch: () => null }}>
-      <TasksList setEditing={() => null} setCurrentTask={() => null} />
-    </ContextApp.Provider>
+    <TasksList
+      state={testState}
+      setEditing={() => null}
+      setCurrentTask={() => null}
+    />
   );
 
   it('should render right tasks length', () => {

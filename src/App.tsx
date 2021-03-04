@@ -2,7 +2,7 @@ import React, { createContext, useReducer, useState } from 'react';
 import { Action, State, ContextState } from './types/stateType';
 import todoReducer from './reducers/todoReducer';
 import TaskForm from './components/forms/TaskForm';
-import TasksList from './components/TasksList/TasksList';
+import TasksList from './components/tasks/TasksList';
 import './App.css';
 
 const initialState: State = {
@@ -10,7 +10,6 @@ const initialState: State = {
 };
 
 export const ContextApp = createContext<ContextState>({
-  state: initialState,
   dispatch: () => null,
 });
 
@@ -21,7 +20,6 @@ function App() {
   );
 
   const ContextState: ContextState = {
-    state,
     dispatch,
   };
 
@@ -31,7 +29,11 @@ function App() {
   return (
     <ContextApp.Provider value={ContextState}>
       <TaskForm editing={editing} task={currentTask} setEditing={setEditing} />
-      <TasksList setEditing={setEditing} setCurrentTask={setCurrentTask} />
+      <TasksList
+        state={state}
+        setEditing={setEditing}
+        setCurrentTask={setCurrentTask}
+      />
     </ContextApp.Provider>
   );
 }

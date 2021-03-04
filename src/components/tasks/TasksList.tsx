@@ -1,6 +1,6 @@
-import React, { useContext, useCallback } from 'react';
-import { ContextApp } from '../../App';
+import React, { useCallback } from 'react';
 import TaskComponent from './TaskComponent';
+import { State } from '../../types/stateType';
 import { Task } from '../../types/taskType';
 import {
   useRemoveTaskAction,
@@ -8,12 +8,12 @@ import {
 } from '../../actions/taskActions';
 
 interface TasksListProps {
+  state: State;
   setEditing: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentTask: React.Dispatch<React.SetStateAction<Task>>;
 }
 
-function TasksList({ setEditing, setCurrentTask }: TasksListProps) {
-  const { state } = useContext(ContextApp);
+function TasksList({ state, setEditing, setCurrentTask }: TasksListProps) {
   const toggleTaskAction = useToggleTaskAction();
   const removeTaskAction = useRemoveTaskAction();
 

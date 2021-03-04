@@ -18,6 +18,5 @@ export interface Action {
 }
 
 export interface ContextState {
-  state: State;
   dispatch: Dispatch<Action>;
 }
